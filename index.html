@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Поможем новичкам</title>
+		<meta charset="utf-8">
+		<link rel="shortcurt icon" href="https://sun9-70.userapi.com/impg/SuIZyklN-7neXB9JED4z_Rz5IVS93Q90vJ1OAQ/xJ3022yL9A4.jpg?size=1600x1348&quality=96&sign=6e4ca6ccb9a6eb26b0807591adcc394f&type=album">
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+		<div class="nav-container">
+			<nav >
+				<ul>
+					<li> <a id="loginButton" class="button" target="_blank">Войти</a> </li>
+					<li> <a id="registrButton" class="button" target="_blank">Регистрация</a> </li>
+					<!-- <li> <a href="#" class="button" target="_blank" >ТехПоддержка</a> </li> -->
+				</ul>
+				<div class="user-container" style="display: none; background-image: url(https://belstroyimport.ru/upload/iblock/3b1/detroyt-ff-1540-12621-30163.jpg); background-size: 100% 100%; background-repeat: no-repeat; border: 0.5px solid #929292; width: 370px; color:white; font-size: 18px;">
+					<img class="user-image" src="kot.jpg" alt="User image" style="width: 125px; margin:10px; border: 0.5px solid #929292;">
+					<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 15px">
+						<div style="display: flex;">
+							<div>  Имя: </div>
+							<div class="user-name"></div>
+						</div>
+						<div style="display: flex; margin: 5px">
+							<div> Статус: </div>
+							<div class="user-role"></div>
+						</div>
+						<button id="logoutButton" style="margin: 5px; width:70px; padding: 2px" class="button">Выйти</button>
+					</div>
+				</div>
+			</nav>
+			<nav style="text-align: center">
+				<img src="logonew.png" class="logo" height="150px">
+			</nav>
+			<nav>
+				<ul>
+					<li> <a id="showUsersButton" class="button" target="_blank">Список Пользователей</a> </li>
+					<!-- <li> <a href="#" class="button" target="_blank">Список Жалоб</a> </li> -->
+					<li> <a id="rulesButton" class="button" target="_blank">Правила поведения</a> </li>
+				</ul>
+			</nav>
+		</div>
+		<div class="overlay"></div>
+		<div id="userCard" style="display: none; background-image: url(https://belstroyimport.ru/upload/iblock/3b1/detroyt-ff-1540-12621-30163.jpg); background-size: 100% 100%; background-repeat: no-repeat; border: 0.5px solid #929292; width: 350px; color:white; font-size: 18px; position: fixed; top:50%; left:50%; transform: translate(-50%,-50%);">
+			<div style="display:flex;">
+				<img id="userCardImage" src="kot.jpg" alt="Аватар пользователя" style="width: 125px; margin:10px; border: 0.5px solid #929292;">
+				<div>
+					<div style="display:flex;flex-direction: column; align-items: center; justify-content: center; margin: 15px">
+						<div > Имя:</div> <div id="userCardName"> </div>
+					</div>
+					<div style="display:flex;flex-direction: column; align-items: center; justify-content: center; margin: 15px">
+						<div > Статус:  </div> <div id="userCardRole"></div>
+					</div>
+				</div>
+			</div>
+			<div style="text-align: center;">
+				<button id="buttonPrivilege" style="margin: 5px; height: 50px; padding: 2px" class="button">Права на модерацию</button>
+
+				<button id="closeUserCard" class="button" style="padding: 2px; height: 50px; margin:5px">Закрыть</button>
+			</div>
+		</div>
+		<div class="containerPrivilege" style="display:none; border: 0.5px solid #929292; width: 300px; background: linear-gradient( 
+		28deg, rgba(255, 85, 0, 1) 9%, rgba(128, 76, 46, 1) 84%);"> 
+			<div> <button id="givePrivilegeButton" class="button" style="padding: 2px; height: 50px; margin:5px"> Выдать  </button> <button id="losePrivilegeButton" class="button" style="padding: 2px; height: 50px; margin:5px"> Отобрать </button> <button id="closePrivilege" class="button" style="padding: 2px; height: 50px; margin:5px"> Закрыть </button> </div> 
+		</div>
+		<div style="overflow-y: auto ; max-height:250px" class="usersTable">
+			<table  id="usersTable" class="table"></table>
+		</div>
+		<div class="Name"> 
+			<h1 style="margin: 0">Поможем новичкам</h1>
+		</div>
+		<div class="container">
+			<div class="left-container">
+				<div class = "left-nav">
+					<ul style="	background-image :url(https://belstroyimport.ru/upload/iblock/3b1/detroyt-ff-1540-12621-30163.jpg);">
+						<li> <a id="homeButton" class="button" >Главная</a> </li>
+						<li> <a id="searchButton" class="button"> Поиск  </a> </li>
+					</ul>
+			</div>
+			</div>
+			<div class ="main-container">
+				<!-- <h1>Поможем новичкам</h1> -->
+				<div style=" display: flex; justify-content: space-between; margin-left: 10px; margin-right: 10px;	margin-top: 12px; ">
+					<h2 style="color: white;">Новости</h2>
+					<button id = "openWindow" class="button" style="height: 50px; padding: 5px;" onclick="openForm()"> Опубликовать новость </button>
+				</div>
+				<div style="border: 0.5px solid #929292;"> </div>
+				<div class="content">
+					<div id="newsForm" style="display: none;">
+						<div class="news">
+							<ul style="border: 1.5px solid #929292">
+								<li class="addnews"> <input type="text" id="newsTitle" placeholder="Введите заголовок новости" style="height: 25px;"> 
+								<button onclick="createNews()" class="button" style="padding: 4px; margin-left: 50px">Создать новость</button>
+								<button onclick="closePopup()" class="button" style="padding: 4px; margin-left: 30px">Закрыть</button> </li>
+								<li class="addnews"> <input type="text" id="newsText" placeholder="Введите текст новости" style="height: 25px;" > 
+								<button class="button" style="padding: 4px; margin-left: 50px" onclick="showCalendar()"> Назначить время публикации </button>
+								<input type="datetime-local" id="publishTime" style="display: none;"> </li>
+								<li class="addnews"> <input type="file" id="newsImage" accept="image/*"> </li>
+							</ul>
+						</div>
+					</div>
+					<div id="newsContainer" style="overflow-y: auto; max-height: 915px;"></div>
+				</div>
+			</div>
+			<div id ="center-container" class ="center-container" style="display:none;">
+				<div class="header" style=" display: flex; justify-content: space-between; margin-left: 10px; margin-right: 10px;	margin-top: 12px; ">
+					<h2 style="color: white;" >Поиск</h2>
+						<button id="openSection" class="button" style="height: 50px; padding: 5px;" onclick="openCreate()"> Создать раздел </button>
+					</div>
+					<div style="border: 0.5px solid #929292;"> </div>
+					<div class="content">
+						<div id="sectionForm" style="display: none;">
+							<div class="news">
+								<ul style="border: 1.5px solid #929292">
+									<li class="addnews"> <input type="text" id="postTitle" placeholder="Введите заголовок раздела" style="height: 25px;"> 
+									<button onclick="createSection()" class="button" style="padding: 4px; margin-left: 50px">Создать</button>
+									<button onclick="closeCreate()" class="button" style="padding: 4px; margin-left: 30px">Закрыть</button> </li> 
+									<li class="addnews"> <input type="file" id="postImage" accept="image/*"> </li>
+								</ul>
+							</div>
+						</div>
+						<div id="sections" class="sections" style="overflow-y: auto; max-height: 915px;"></div>
+				</div>
+			 </div>
+			<div class = "right-container" style="background-image :url(https://belstroyimport.ru/upload/iblock/3b1/detroyt-ff-1540-12621-30163.jpg);">
+				<div class="contact">
+					<h2>Контактные данные сотрудников</h2>
+					<div  style=" background: linear-gradient( 28deg, rgba(255, 85, 0, 1) 9%, rgba(128, 76, 46, 1) 84%); background-repeat: no-repeat; border: 0.5px solid #929292; width: 250px; color:white; font-size: 18px;">
+						<div style="text-align :center"><img src="kot.jpg" alt="User image" style="width: 125px; margin:10px; border: 0.5px solid #929292;">
+						<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 15px">
+						<div style="display: flex;">
+							<div>  Имя: </div>
+							<div > Admin</div>
+						</div>
+						<div style="display: flex; margin: 5px">
+							<div> Статус: </div>
+							<div > Администратор</div>
+						</div>
+					</div>
+				</div>
+				</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer">
+			<div class="channel">
+				<p> Оффициальные каналы </p>
+				<div class="channels">
+					<a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" title="YouTube"><img src="youtube.png" style="height:40px; margin-right: 15px;"> </a>
+					<a href="https://vk.com/escapefromtarkov" target="_blank" title="Vk"> <img src="vk.png" style="height:40px"> </a>
+					<a href="https://www.twitch.tv/ilame" target="_blank" title="Twitch"> <img src="twitch.png" style="height:40px; margin-left: 15px"></a>
+				</div>
+		    </div>
+			<div class="conditions">
+				<p> 
+					Условия использования, Уведомление о конфидециальности и Уведомление в отношении файлов Cookies
+				</p>
+			</div>
+		</div>
+	
+	<div class="registration-box" style="display: none;">
+        <div class="registration-left">
+            <h1 style="margin-top: 0; color: white;">Регистрация</h1>
+        <form action="" id="registrationForm">
+        <div class="input-container ic1">
+            <input id="registration-email" class="input" type="email" name="email" required placeholder=" " />
+            <div class="cut"></div>
+            <label for="email" class="placeholder">Электронный адрес</label>
+        </div>
+        <div class="input-container ic2">
+            <input id="registration-username" class="input" type="text" name="username" required placeholder=" " />
+            <div class="cut"></div>
+            <label for="username" class="placeholder">Имя пользователя</label>
+         </div>
+          <div class="input-container ic2">
+            <input id="registration-password" class="input" type="password" name="password" required placeholder=" " />
+            <div class="cut cut-short"></div>
+            <label for="password" class="placeholder">Пароль</label>
+         </div>
+        <input type="submit" class="submit" value="Зарегистрироваться">
+    </form>
+    </div>
+    <div class="registration-right">
+        <div class="incription">
+            <h2 class="hello" style="color: white;"> Станьте и вы участником форума </h2>
+            <p style="text-align: center;">
+                <a href="index.html"><img src="logonew.png" class="logo" height="75px"> </a>
+            </p>
+        </div>
+    </div>
+    </div>
+
+
+    <div class="authorization-box" style="display: none;">
+		<div class="registration-left">
+			<h1 style="margin-top: 0; color: white;">Авторизация</h1>
+			<form action="" id="loginForm">
+				<div class="input-container ic1">
+				    <input id="login-username" class="input" type="text" name="username" required placeholder=" " />
+				    <div class="cut"></div>
+				    <label for="username" class="placeholder">Имя пользователя</label>
+				</div>
+				 <div class="input-container ic2">
+				    <input id="login-password" class="input" type="password" required placeholder=" " />
+				    <div class="cut cut-short"></div>
+				    <label for="password" class="placeholder">Пароль</label>
+				 </div>
+				<input type="submit" class="submit" value="Войти">
+			</form>
+		</div>
+		<div class="registration-right">
+			<div class="incription">
+				<h2 class="hello" style="color: white;"> Станьте и вы участником форума </h2>
+				<p style="text-align: center;">
+					<a href="index.html"><img src="logonew.png" class="logo" height="75px"> </a>
+				</p>
+			</div>
+		</div>
+	</div>
+
+    	<div class="rules" style="display:none; max-height: 80%; width:80% ;overflow-y: auto; color:white"> 
+			<div style="display: block;">
+				<div>
+					<p> <h2 style="margin-left: 5px;">Правила поведения </h2></p>
+				</div>
+				<div style="  border: 0.5px solid #929292; margin: 10px; ">
+					<p > <h3 style="margin-left: 5px;">За нарушение правил поведения на форуме могут быть применены различные виды наказаний в зависимости от тяжести нарушения и повторности его совершения. Некоторые из возможных наказаний могут включать: </h3></p>
+					<ul style="margin-left: 5px;">
+						<li> Предупреждение: модератор может вынести предупреждение участнику, который нарушил правила, и объяснить, какое правило было нарушено и как избежать подобных нарушений в будущем.</li>
+						<li> Временный бан: участник может быть временно заблокирован на форуме на определенный срок за повторное или серьезное нарушение правил.</li>
+						<li> Постоянный бан: в случае многократного или крайне серьезного нарушения правил участник может быть заблокирован на форуме навсегда.</li>
+					</ul>
+					<p style="margin-left: 5px;"> Важно отметить, что решение о применении наказания принимается модераторами и администрацией форума и должно быть справедливым и обоснованным.</p>
+				</div>
+				<div style="  border: 0.5px solid #929292; margin: 10px;">
+					<p > <h3 style="margin-left: 5px;">Как апеллировать решение о наказании? </h3></p>
+					<p style="margin-left: 5px;"> Если участник форума считает, что решение о наказании было принято несправедливо или необоснованно, он может обратиться с апелляцией к администрации форума. Обычно для этого необходимо написать письмо или сообщение с объяснением ситуации и причинами, по которым участник считает решение несправедливым.
+					Администрация форума рассмотрит апелляцию и может принять решение об отмене или изменении наказания, если сочтет это обоснованным. Однако, решение администрации является окончательным и обжалованию не подлежит.
+					Важно соблюдать уважительный тон при обращении с апелляцией и предоставить всю необходимую информацию для рассмотрения вашего дела. </p>
+
+				</div>
+				<div style="  border: 0.5px solid #929292; margin: 10px;">
+					<p > <h3 style="margin-left: 5px;">Правила: </h3></p>
+					<ul style="list-style: none;">
+						<li>1.	Будьте вежливы и уважайте других участников форума. </li>
+						<li>2.	Не используйте оскорбительные или грубые выражения. </li>
+						<li>3.	Не размещайте нелегальный контент или ссылки на него. </li>
+						<li>4.	Не занимайтесь спамом или рекламой без разрешения администрации форума. </li>
+						<li>5.	Соблюдайте тематику разделов и не создавайте дублирующие темы. </li>
+						<li>6.	Следуйте указаниям модераторов и администрации форума. </li>
+						<li>7.	Не используйте форум для распространения спама или нежелательной рекламы. </li>
+						<li>8.	Не занимайтесь троллингом или провокацией других участников. </li>
+						<li>9.	Не публикуйте ложную или недостоверную информацию. </li>
+					</ul>
+				</div>
+			</div>
+			<div style=" width: 90%;">
+				<img src="rules.png" style="width: 100%; height: 125%; margin-top: 10px;">
+			</div>
+		</div>
+	<script src="addnews.js">
+
+    </script>
+	</body>
+</html>
